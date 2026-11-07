@@ -1,19 +1,35 @@
-# Backend de prueba sin MongoDB
+# NestJS en Vercel
 
-Backend NestJS independiente, sin conexión a base de datos.
-
-## API
-
-`GET /api/hola` responde:
+API mínima en NestJS. `GET /api/hello` responde:
 
 ```json
-{ "mensaje": "Hola Santiago" }
+{"message":"Hola desde NestJS!"}
 ```
 
-## Despliegue en Vercel
+## Requisitos
 
-Importá el repositorio y configurá `backend-sin-mongo` como **Root Directory**. No necesita variables de entorno. El preset del proyecto debe ser **NestJS**.
+- Node.js 20 o superior
+- npm
 
-## Prueba local
+## Ejecutar localmente
 
-Ejecutá `npm install`, `npm run build` y `npm run start:prod`. La API queda en `http://localhost:3000/api/hola`.
+```bash
+npm install
+npm run start:dev
+```
+
+Abrí <http://localhost:3000/api/hello>.
+
+Para probar el entorno de Vercel localmente, instalá la CLI (`npm install --global vercel`) y ejecutá:
+
+```bash
+npm run vercel:dev
+```
+
+## Desplegar en Vercel
+
+1. Subí el proyecto a un repositorio Git e importalo desde [vercel.com/new](https://vercel.com/new), o instalá la CLI con `npm install --global vercel`.
+2. Desde la carpeta del proyecto, ejecutá `vercel` para crear un despliegue de vista previa.
+3. Ejecutá `vercel --prod` para publicar en producción.
+
+Vercel detecta la aplicación NestJS mediante `src/main.ts` y la ejecuta como una función serverless. El prefijo global `api` y el controlador NestJS resuelven la ruta `/api/hello`.
